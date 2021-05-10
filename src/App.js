@@ -41,9 +41,22 @@ function App() {
       </header>
       <Card elevation={5} style={{margin: 15, padding: 10}}>
         <div style={{padding:15}}>
-        <h1 style={{font: 72}}>
-          {count}
-        </h1>
+        <div>
+          <h2>
+            Here are the numbers...
+          </h2>
+          <div style={divStyle}>
+            {count - 1}
+          </div>
+          <div style={divStyle}>
+            <div style={{fontSize:"175%"}}>
+              {count}
+            </div>
+          </div>
+          <div style={divStyle}>
+            {count + 1}
+          </div>
+        </div>
         <ButtonGroup 
         size = "small" 
         variant="contained"
@@ -68,28 +81,6 @@ function App() {
         </Checkbox>
         </div>
       </Card> 
-      <Card elevation={5} style={{margin: 15, padding: 10}}>
-        <Grid direction="row" justify="center" alignItems="center">
-          <h2>
-            Just to reiterate...
-          </h2>
-          <div style={divStyle}>
-            {count - 1}
-          </div>
-          <div style={divStyle}>
-            {count}
-          </div>
-          <div style={divStyle}>
-            {count + 1}
-          </div>
-        </Grid>
-        
-      </Card>   
-      <Grid>
-        <Card>
-
-        </Card>
-      </Grid>  
     </div>
   );
 }
