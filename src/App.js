@@ -5,9 +5,15 @@ import { Button, ButtonGroup, Card, Checkbox, TextField, Grid } from '@material-
 
 function App() {
 
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
   const [toggled, setToggled] = useState(false);
   const [saveCount, setSaveCount] = useState(0);
+
+  const divStyle = {
+    margin: 15,
+    display: "inline-block",
+    fontSize: "150%",
+  }
 
   function setCountHandler(number) {
     if(toggled){
@@ -49,7 +55,7 @@ function App() {
           </Button>
           <Button color="secondary"
           size="large"
-          onClick={setCountHandler.bind(this, 0)}>
+          onClick={setCountHandler.bind(this, 1)}>
               Wait! Start over.
           </Button>
         </ButtonGroup>
@@ -64,16 +70,18 @@ function App() {
       </Card> 
       <Card elevation={5} style={{margin: 15, padding: 10}}>
         <Grid direction="row" justify="center" alignItems="center">
-          <TextField 
-          value={count}
-          variant="outlined">
-            Enter some stuff here
-          </TextField>
-          <TextField 
-          value={count}
-          variant="outlined">
-            Enter some stuff here
-          </TextField>
+          <h2>
+            Just to reiterate...
+          </h2>
+          <div style={divStyle}>
+            {count - 1}
+          </div>
+          <div style={divStyle}>
+            {count}
+          </div>
+          <div style={divStyle}>
+            {count + 1}
+          </div>
         </Grid>
         
       </Card>   
