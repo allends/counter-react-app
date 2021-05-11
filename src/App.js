@@ -1,13 +1,12 @@
 import './App.css';
 import './Styles.css'
 import { React, useState } from 'react'
-import { Button, ButtonGroup, Card, Checkbox } from '@material-ui/core';
+import { Button, ButtonGroup, Card } from '@material-ui/core';
 
 function App() {
 
   const [count, setCount] = useState(1);
-  const [toggled, setToggled] = useState(false);
-  const [saveCount, setSaveCount] = useState(0);
+  const [timer, setTimer] = useState()
 
   const divStyle = {
     margin: 15,
@@ -16,20 +15,31 @@ function App() {
   }
 
   function setCountHandler(number) {
-    if(toggled){
-      return
-    }
     setCount(number)
   }
 
-  function checkHandler(event){
-    if(event.target.checked){
-      setSaveCount(count);
-      setCount(69)
+  //for autocount, make when state depends on previous state use
+  // the function way to update the state.
+  function tick(){
+    if(timer){
+      setCount((count) => {
+        return (count+1)
+      })
     }else{
-      setCount(saveCount)
+      return
     }
-    setToggled(event.target.checked)
+    
+  }
+
+  function autoCountHandler(){
+    if(timer){
+      clearInterval(timer);
+    }
+    setTimer(setInterval(tick, 1000));
+  }
+
+  function stopAutoCountHandler(){
+    clearInterval(timer);
   }
 
   return (
@@ -60,7 +70,7 @@ function App() {
         <ButtonGroup 
         size = "small" 
         variant="contained"
-        style={{font: 24}}
+        style={{font: 24, margin: 5}}
         >
           <Button color="primary"
           onClick={setCountHandler.bind(this, count + 1)}>
@@ -72,13 +82,22 @@ function App() {
               Wait! Start over.
           </Button>
         </ButtonGroup>
-        <Checkbox
-        checked={toggled}
-        label="Auto"
-        name="Auto count"
-        onChange={checkHandler}>
-            A Checkbox {toggled}
-        </Checkbox>
+        <ButtonGroup 
+        size = "small" 
+        variant="contained"
+        style={{font: 24, margin: 5}}
+        >
+          <Button color="default"
+          size="large"
+          onClick={autoCountHandler}>
+              Auto Count 😎
+          </Button>
+          <Button color="default"
+          size="large"
+          onClick={stopAutoCountHandler}>
+              Stop auto count
+          </Button>
+        </ButtonGroup>
         </div>
       </Card> 
     </div>
