@@ -6,7 +6,6 @@ import { Button, ButtonGroup, Card } from '@material-ui/core';
 function App() {
 
   const [count, setCount] = useState(1);
-  const [timer, setTimer] = useState()
 
   const divStyle = {
     margin: 15,
@@ -16,30 +15,6 @@ function App() {
 
   function setCountHandler(number) {
     setCount(number)
-  }
-
-  //for autocount, make when state depends on previous state use
-  // the function way to update the state.
-  function tick(){
-    if(timer){
-      setCount((count) => {
-        return (count+1)
-      })
-    }else{
-      return
-    }
-    
-  }
-
-  function autoCountHandler(){
-    if(timer){
-      clearInterval(timer);
-    }
-    setTimer(setInterval(tick, 1000));
-  }
-
-  function stopAutoCountHandler(){
-    clearInterval(timer);
   }
 
   return (
@@ -80,22 +55,6 @@ function App() {
           size="large"
           onClick={setCountHandler.bind(this, 1)}>
               Wait! Start over.
-          </Button>
-        </ButtonGroup>
-        <ButtonGroup 
-        size = "small" 
-        variant="contained"
-        style={{font: 24, margin: 5}}
-        >
-          <Button color="default"
-          size="large"
-          onClick={autoCountHandler}>
-              Auto Count 😎
-          </Button>
-          <Button color="default"
-          size="large"
-          onClick={stopAutoCountHandler}>
-              Stop auto count
           </Button>
         </ButtonGroup>
         </div>
